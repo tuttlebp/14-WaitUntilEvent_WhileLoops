@@ -30,8 +30,8 @@ Ultimately you should be comfortable with both approaches.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Brett Tuttle.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import math
 
@@ -99,10 +99,17 @@ def sum_until_prime_input():
          The sum of the input integers is: 167
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #   The testing code is already written for you (above).
     # -------------------------------------------------------------------------
 
+    sum = 0
+    while True:
+        x = int(input('enter integer greater than 1: '))
+        sum = sum + x
+        if is_prime(x) is True:
+            break
+    print('the sum of input integers is: ', sum)
 
 def run_test_next_prime():
     """ Tests the   next_prime    function. """
@@ -164,14 +171,17 @@ def run_test_next_prime():
     print('Actual:  ', actual)
     print('TEST ENDED!')
 
-    # TODO 3 (continued):
+    # DONE 3 (continued):
     #   PUT YOUR TEST   ** IN THE SPACE BETWEEN **   the
     #   print('TEST STARTED!' ...) and print('TEST ENDED') lines below.
 
     # Test 6:
     print()
     print('TEST STARTED!  Has it ended?')
-
+    expected = 13
+    actual = next_prime(13)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
     print('TEST ENDED!')
 
 
@@ -190,12 +200,19 @@ def next_prime(m):
       :type m: int
     """
     # -------------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     # IMPLEMENTATION REQUIREMENT:
     #    -- Use (call) the   is_prime   function above appropriately.
     # -------------------------------------------------------------------------
+    if is_prime(m) == True:
+        return m
+    while True:
+        m = m + 1
+        if is_prime(m) is True:
+            break
+    return m
 
 
 def run_test_prime_gap():
@@ -334,6 +351,11 @@ def prime_gap(m):
     #    -- Use (call) the   *** next_prime ***   function
     #       (that you implemented) appropriately.
     # -------------------------------------------------------------------------
+    number = 2
+    while True:
+        if next_prime(number + 1) - number >= m:
+            return next_prime(number)
+        number = number + 1
 
 
 def run_test_wait_for_sum_of_cubes():
@@ -415,7 +437,10 @@ def run_test_wait_for_sum_of_cubes():
     # Test 7:
     print()
     print('TEST STARTED!  Has it ended?')
-
+    expected = 1
+    actual = wait_for_sum_of_cubes(-76)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
     print('TEST ENDED!')
 
     # TODO 6 (continued):
@@ -425,7 +450,10 @@ def run_test_wait_for_sum_of_cubes():
     # Test 8:
     print()
     print('TEST STARTED!  Has it ended?')
-
+    expected = 4
+    actual = wait_for_sum_of_cubes(99)
+    print('Expected:', expected)
+    print('Actual:  ', actual)
     print('TEST ENDED!')
 
 
@@ -473,6 +501,14 @@ def wait_for_sum_of_cubes(x):
     # (or look up) a formula that would allow a faster computation.
     # But no fair using any such approach in this implementation.
     # -------------------------------------------------------------------------
+
+    sum = 0
+    num = 0
+    while True:
+        num = num + 1
+        sum = sum + (num ** 3)
+        if sum >= x:
+            return num
 
 
 # -----------------------------------------------------------------------------
